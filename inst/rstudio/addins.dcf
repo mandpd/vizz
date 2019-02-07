@@ -1,0 +1,4 @@
+Name: Gamma Parameter Chooser
+Description: Plots Gamma Distribution from given Parameters
+Binding: gamma_viz
+Interactive: true

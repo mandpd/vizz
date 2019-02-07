@@ -1,0 +1,10 @@
+Package: vizz
+Type: Package
+Title: Visualization Widgets
+Version: 0.1.0
+Author: msmith77@nd.edu
+Maintainer: msmith77@nd.edu
+Description: Right now, this is one widget for visualizing the Gamma Distribution
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
