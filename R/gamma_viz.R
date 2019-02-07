@@ -92,5 +92,5 @@ server <- function(input, output) {
 
 }
 
-runGadget(ui, server, viewer = paneViewer)
+runGadget(ui, server)
 }
