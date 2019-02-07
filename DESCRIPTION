@@ -8,3 +8,5 @@ Description: Right now, this is one widget for visualizing the Gamma Distributio
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+Depends: shiny, miniUI, shinythemes, tidyverse, shinyjs
+    
