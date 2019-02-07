@@ -48,7 +48,7 @@ ui <- shiny::fluidPage(
 server <- function(input, output) {
   output$plotDisplay <-
     shiny::renderPlot({
-      ggplot(df(), aes(x = data)) + geom_histogram(binwidth = 1) + geom_vline(xintercept =
+      ggplot2::ggplot(df(), aes(x = data)) + geom_histogram(binwidth = 1) + geom_vline(xintercept =
                                                                                 input$targetMean)
     })
   df <- shiny::eventReactive(input$recalculate, {
