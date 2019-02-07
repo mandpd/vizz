@@ -14,4 +14,4 @@ Imports:
   rstudioapi (>= 0.5),
   shinythemes (>= 1.1.2),
   tidyverse (>= 1.2.1),
-  shinyjs (>= 1.0)   
+  shinyjs (>= 1.0)
