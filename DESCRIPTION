@@ -9,4 +9,10 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Depends: shiny, miniUI, shinythemes, tidyverse, shinyjs
-    
+Imports:
+  shiny (>= 0.13),
+  miniUI (>= 0.1.1),
+  rstudioapi (>= 0.5)
+  shinythemes (>= 1.1.2)
+  tidyverse (>= 1.2.1)
+  shinyjs (>= 1.0)   
