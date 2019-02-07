@@ -6,13 +6,13 @@ library(shinyjs)
 
 #' @export
 gamma_viz <- function() {
-ui <- fluidPage(
-  useShinyjs(),
-  theme = shinytheme('united'),
-  gadgetTitleBar('Gamma Parameter Chooser'),
-  fluidRow(column(6,
-                  wellPanel(
-                    sliderInput(
+ui <- shiny::fluidPage(
+  shinyjs::useShinyjs(),
+  theme = shinythemes::shinytheme('united'),
+  miniUI::gadgetTitleBar('Gamma Parameter Chooser'),
+  shiny::fluidRow(shiny::column(6,
+                  shiny::wellPanel(
+                    shiny::sliderInput(
                       inputId = 'shape',
                       label = 'Shape',
                       min = 1,
@@ -22,9 +22,9 @@ ui <- fluidPage(
                       step = 0.001
                     )
                   )),
-           column(6,
-                  wellPanel(
-                    sliderInput(
+                  shiny::column(6,
+                                shiny::wellPanel(
+                                  shiny::sliderInput(
                       inputId = 'rate',
                       label = 'Rate',
                       min = 1,
@@ -35,28 +35,28 @@ ui <- fluidPage(
 
                     )
                   ))),
-  fluidRow(
-    column(3, numericInput('targetMean', 'Target Mean', value = 60)),
-    column(3, numericInput('targetQuantile', 'Target Quantile', 0.85)),
-    column(3, numericInput('targetQuantileValue', 'Target Quantile Value', 100))
+  shiny::fluidRow(
+    shiny::column(3, shiny::numericInput('targetMean', 'Target Mean', value = 60)),
+    shiny::column(3, shiny::numericInput('targetQuantile', 'Target Quantile', 0.85)),
+    shiny::column(3, shiny::numericInput('targetQuantileValue', 'Target Quantile Value', 100))
   ),
-  fluidRow(column(12, actionButton('recalculate', label = 'Run Simulation'))
+  shiny::fluidRow(shiny::column(12, shiny::actionButton('recalculate', label = 'Run Simulation'))
   ),
-  uiOutput('plotPlus')
+  shiny::uiOutput('plotPlus')
 )
 
 server <- function(input, output) {
   output$plotDisplay <-
-    renderPlot({
+    shiny::renderPlot({
       ggplot(df(), aes(x = data)) + geom_histogram(binwidth = 1) + geom_vline(xintercept =
                                                                                 input$targetMean)
     })
-  df <- eventReactive(input$recalculate, {
+  df <- shiny::eventReactive(input$recalculate, {
     show('plotPlus')
     sample = rgamma(100000, input$shape, 1 / input$rate)
     data.frame(data = sample)
   }, ignoreNULL = FALSE)
-  output$vals <- renderText({
+  output$vals <- shiny::renderText({
     paste(
       paste('Shape:', input$shape, sep = ' '),
       paste('Rate:', input$rate, sep = ' '),
@@ -72,22 +72,22 @@ server <- function(input, output) {
       sep = '\n'
     )
   })
-  output$plotPlus <- renderUI({fluidRow(column(8,
-                                     plotOutput('plotDisplay')),
-                              column(4,
+  output$plotPlus <- shiny::renderUI({fluidRow(column(8,
+                                                      shiny::plotOutput('plotDisplay')),
+                                               shiny::column(4,
                                      # verbatimTextOutput('summary'),
-                                     verbatimTextOutput('vals')))})
-  observeEvent(input$shape, {
-    hide('plotPlus')
+                                     shiny::verbatimTextOutput('vals')))})
+  shiny::observeEvent(input$shape, {
+    shinyjs::hide('plotPlus')
   })
-  observeEvent(input$rate, {
-    hide('plotPlus')
+  shiny::observeEvent(input$rate, {
+    shinyjs::hide('plotPlus')
   })
-  observeEvent(input$recalculate, {
-    show('plotPlus')
+  shiny::observeEvent(input$recalculate, {
+    shinyjs::show('plotPlus')
   })
-  observeEvent(input$done, {
-    stopApp()
+  shiny::observeEvent(input$done, {
+    shinyjs::stopApp()
   })
 
 }
