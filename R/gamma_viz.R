@@ -87,7 +87,7 @@ server <- function(input, output) {
     shinyjs::show('plotPlus')
   })
   shiny::observeEvent(input$done, {
-    shinyjs::stopApp()
+    shiny::stopApp()
   })
 
 }
