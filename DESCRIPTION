@@ -1,7 +1,7 @@
 Package: vizz
 Type: Package
 Title: Visualization Widgets
-Version: 0.1.0
+Version: 0.1.1
 Author: Mark J Smith <msmith77@nd.edu>
 Maintainer: Mark J Smith <msmith77@nd.edu>
 Description: Right now, this is one widget for visualizing the Gamma Distribution
