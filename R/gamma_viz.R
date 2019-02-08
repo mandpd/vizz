@@ -26,7 +26,7 @@ ui <- shiny::fluidPage(
                                 shiny::wellPanel(
                                   shiny::sliderInput(
                       inputId = 'rate',
-                      label = 'Rate',
+                      label = 'Scale',
                       min = 1,
                       max = 30,
                       value = 15,
@@ -53,14 +53,13 @@ server <- function(input, output) {
     })
   df <- shiny::eventReactive(input$recalculate, {
     show('plotPlus')
-    sample = rgamma(100000, input$shape, 1 / input$rate)
+    sample = rgamma(100000, shape = input$shape, scale = input$rate)
     data.frame(data = sample)
   }, ignoreNULL = FALSE)
   output$vals <- shiny::renderText({
     paste(
       paste('Shape:', input$shape, sep = ' '),
-      paste('Rate:', input$rate, sep = ' '),
-      paste('Shape/Rate:', round(input$shape / input$rate, 2), sep = ' '),
+      paste('Scale:', input$rate, sep = ' '),
       paste('Mean:',  round(mean(df(
       )$data), 2), sep = ' '),
       paste(
